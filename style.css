@@ -1,0 +1,892 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    background-color: white;
+    overflow-y: scroll;
+}
+.sign-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+button {
+    font-family: 'Montserrat', sans-serif;
+}
+.sign-logo {
+    position: absolute;
+    top:0%;
+    left:0%;
+}
+.sign-logo img {
+    height: 125px;
+}
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.signup-container h1 {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+.signup-container p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+}
+.signup-container a {
+    color: #005eff;
+    text-decoration: none;
+}
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px;
+}
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 300px;
+    padding-right: 40px;
+}
+.form-group {
+    position: relative;
+    margin-top: 20px;
+    width: 100%;
+}
+.form-group input {
+    width: 100%;
+    padding: 14px 10px 6px 10px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+}
+.form-group label {
+    position: absolute;
+    top: 40%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #aaa;
+    transition: all 0.3s ease;
+}
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+    top: 5px;
+    font-size: 12px;
+    color: #005eff;
+}
+.form-group input:focus,
+.form-group input:not(:placeholder-shown) {
+    border-bottom: 1px solid #005eff;
+}
+.signup-button {
+    margin-top: 30px;
+    padding: 12px 20px;
+    font-size: 16px;
+    color: #005eff;
+    background-color: white;
+    border: 1px solid #005eff;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    max-width: 300px;
+    align-self: flex-start;
+}
+.signup-button:hover {
+    background-color: #005eff;
+    color: white;
+}
+.vertical-divider {
+    width: 1px;
+    background-color: #ccc;
+    height: 250px;
+    margin: 0 30px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.vertical-divider span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 5px;
+    color: #666;
+    font-size: 14px;
+}
+.google-container {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensures equal spacing */
+    background-color: white;
+    padding: 10px 40px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+/* Ensure navbar elements do not overflow */
+.nav-logo {
+    flex-shrink: 0;
+}
+
+.nav-logo img {
+    height: 70px; /* Adjusted for better proportions */
+}
+
+/* Navbar Menu */
+.nav-menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin: 0 auto; /* Centering trick */
+    padding: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* Ensures perfect centering */
+}
+
+.nav-menu li {
+    white-space: nowrap; /* Prevents text wrapping */
+}
+
+.nav-menu a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    color: black;
+    transition: color 0.3s ease;
+    padding: 8px 12px;
+}
+
+.nav-menu a:hover {
+    color: #005eff;
+}
+
+/* Profile Button - Same Style as Menu Items */
+.profile-link {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    color: black;
+    transition: color 0.3s ease;
+    padding: 8px 12px;
+}
+
+.profile-link:hover {
+    color: #005eff;
+}
+
+/* Logout Button */
+.logout-button {
+    background-color: #005eff;
+    color: white;
+    border: 1px solid #005eff;
+    font-size: 16px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    white-space: nowrap;
+}
+
+.logout-button:hover {
+    /* background-color: #003fb3; */
+    background-color: white;
+    color: #005eff;
+    border: 1px solid #005eff;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Ensure all items fit inside navbar */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+/* Fix for Dashboard Content Overlapping Navbar */
+.dashboard-container {
+    margin-top: 80px;
+    padding: 40px;
+    text-align: center;
+}
+
+.pitch-container {
+    margin-top: 80px;
+    padding: 40px;
+    text-align: center;
+}
+
+/* Pitch Page Styling */
+.pitch-container {
+    text-align: center;
+    margin-top: 100px;
+    padding: 40px;
+}
+
+.pitch-options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.pitch-choice {
+    padding: 12px 24px;
+    font-size: 18px;
+    border: 2px solid #005eff;
+    background-color: white;
+    color: #005eff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pitch-choice:hover {
+    background-color: #005eff;
+    color: white;
+}
+
+/* Hidden Form (Appears When Button is Clicked) */
+.hidden {
+    display: none;
+}
+
+.pitch-form {
+    margin-top: 30px;
+    text-align: left;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.pitch-form h2 {
+    text-align: center;
+}
+
+.pitch-form label {
+    display: block;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.pitch-form input, 
+.pitch-form textarea, 
+.pitch-form select {
+    width: 100%; /* Ensures it fits within the form */
+    padding: 12px;
+    font-size: 16px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: block;
+    box-sizing: border-box;
+}
+
+.pitch-form textarea {
+    resize: vertical;
+    height: 100px; /* Adjust height for better visibility */
+}
+
+.submit-pitch {
+    margin-top: 20px;
+    padding: 12px;
+    width: 100%;
+    background-color: #005eff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-pitch:hover {
+    background-color: #003fb3;
+}
+
+.pitch-form input,
+.pitch-form textarea,
+.pitch-form select,
+.pitch-form button {
+    font-family: 'Montserrat', sans-serif; /* Match navbar and text */
+    font-size: 16px;
+}
+
+/* Interest Options (Selectable Boxes) */
+.interest-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.interest-box {
+    background-color: white;
+    border: 2px solid #005eff;
+    color: #005eff;
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.interest-box:hover,
+.interest-box.selected {
+    background-color: #005eff;
+    color: white;
+}
+
+/* Selected Fields Display */
+.selected-fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Each Selected Option */
+.selected-option {
+    background-color: #005eff;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+/* Remove (❌) Button */
+.remove-option {
+    margin-left: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+}
+
+.remove-option:hover {
+    color: red;
+}
+
+.char-count {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+    text-align: right;
+}
+
+/* Matches Page Styling */
+.matches-container {
+    margin-top: 40px;
+    padding: 40px;
+    text-align: center;
+}
+
+/* Tab Options Styling */
+.tab-options {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.tab-option {
+    padding: 10px 20px;
+    border: 1px solid #005eff;
+    border-radius: 20px;
+    background-color: white;
+    color: #005eff;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.tab-option.active,
+.tab-option:hover {
+    background-color: #005eff;
+    color: white;
+}
+
+/* Matches Container Styling */
+.matches-container {
+    margin-top: 80px;
+    padding: 40px;
+}
+
+.interest-filter {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.interest-filter select {
+    padding: 8px 12px;
+    border: 1px solid #005eff;
+    border-radius: 5px;
+    background-color: white;
+    color: #005eff;
+    cursor: pointer;
+}
+
+/* Match Cards Styling */
+.match-card {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+}
+
+/* Card Content Styling */
+.card-content {
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr 1fr;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+/* Ensure Long Descriptions Display Properly */
+.card-section.description {
+    white-space: normal;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+/* Ensure Each Card Section is Responsive */
+.card-section {
+    padding: 5px 10px;
+}
+
+/* Status Buttons */
+.accept-btn, .reject-btn, .finalize-btn {
+    padding: 6px 14px; /* Increased padding to make sizes equal */
+    margin: 2px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+    min-width: 80px; /* Ensures equal width */
+}
+
+/* Accept Button Styling */
+.accept-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.accept-btn:hover {
+    background-color: #45a049;
+}
+
+/* Reject Button Styling */
+.reject-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.reject-btn:hover {
+    background-color: #e53935;
+}
+
+/* Finalize Button Styling */
+.finalize-btn {
+    background-color: #005eff;
+    color: white;
+    margin-top: 5px;
+}
+
+.finalize-btn:hover {
+    background-color: #003fb3;
+}
+
+/* Type Filter Styling */
+.type-filter {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.type-filter select {
+    padding: 8px 12px;
+    border: 1px solid #005eff;
+    border-radius: 5px;
+    background-color: white;
+    color: #005eff;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Filters Container Styling */
+.filters-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;  /* Adds equal space above and below */
+}
+
+/* Styled Filter Dropdowns */
+.styled-filter {
+    padding: 8px 12px;
+    border: 1px solid #005eff;
+    border-radius: 5px;
+    background-color: white;
+    color: #005eff;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Hover Effect */
+.styled-filter:hover,
+.styled-filter:focus {
+    background-color: #005eff;
+    color: white;
+}
+
+/* Type Label Styling */
+.type-label {
+    font-size: 12px;
+    color: grey;
+    margin-top: 4px;
+}
+
+/* Name Styling */
+.card-section.name {
+    color: #005eff;
+    font-size: 16px;
+}
+
+/* Requests Page Styling */
+.requests-container {
+    margin-top: 100px;
+    padding: 40px;
+    text-align: center;
+}
+
+.request-options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.request-choice {
+    padding: 12px 24px;
+    font-size: 18px;
+    border: 2px solid #005eff;
+    background-color: white;
+    color: #005eff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.request-choice:hover {
+    background-color: #005eff;
+    color: white;
+}
+
+.request-card {
+    background-color: white;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.request-card h2 {
+    color: #005eff;
+}
+
+.swipe-buttons {
+    margin-top: 20px;
+}
+
+/* .accept-btn, .reject-btn {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+} */ */
+
+.accept-btn {
+    background-color: #10B981;
+    color: white;
+}
+
+.accept-btn:hover {
+    background-color: #059669;
+}
+
+.reject-btn {
+    background-color: #EF4444;
+    color: white;
+}
+
+.reject-btn:hover {
+    background-color: #B91C1C;
+}
+/* .accept-btn {
+    background-color: #005eff;
+    color: white;
+    border: 1px solid white;
+}
+
+.accept-btn:hover {
+    background-color: white;
+    color: #005eff;
+    border: 1px solid #005eff;
+}
+
+.reject-btn {
+    background-color: #005eff;
+    color: white;
+    border: 1px solid white;
+}
+
+.reject-btn:hover {
+    background-color: white;
+    color: #005eff;
+    border: 1px solid #005eff;
+} */
+
+/* Styling Swipe Buttons */
+.swipe-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Accept Button Style */
+.request-btn {
+    padding: 10px 25px;
+    background: linear-gradient(45deg, #005eff, #007bff);
+    color: white;
+    border: 2px solid #005eff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.request-btn:hover {
+    background: white;
+    color: #005eff;
+    border-color: #005eff;
+    box-shadow: 0 0 12px rgba(0, 94, 255, 0.3);
+}
+
+/* Reject Button Style */
+.pass-btn {
+    padding: 10px 25px;
+    background: linear-gradient(45deg, #d3d3d3, #b0b0b0);
+    color: #005eff;
+    border: 2px solid #b0b0b0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.pass-btn:hover {
+    background: white;
+    color: #b0b0b0;
+    border-color: #b0b0b0;
+    box-shadow: 0 0 12px rgba(176, 176, 176, 0.3);
+}
+
+/* Swipe Animation */
+@keyframes swipeLeft {
+    0% { transform: translate(0, 0); opacity: 1; }
+    100% { transform: translate(-300px, 0); opacity: 0; }
+}
+
+@keyframes swipeRight {
+    0% { transform: translate(0, 0); opacity: 1; }
+    100% { transform: translate(300px, 0); opacity: 0; }
+}
+
+.request-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.history-icon {
+    font-size: 24px;
+    color: #005eff;
+    text-decoration: none;
+    padding: 8px 12px;
+    border: 1px solid #005eff;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.history-icon:hover {
+    background-color: #005eff;
+    color: white;
+}
+
+.history-container {
+    max-width: 800px;
+    margin: 100px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+.history-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+
+.history-card p {
+    margin: 0;
+    font-size: 18px;
+  }
+
+.reconsider-btn {
+    margin-top: 12px;
+    padding: 8px 16px;
+    background-color: #005eff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+  }
+
+.reconsider-btn:hover {
+    background-color: #003fcf;
+  }
+
+h1 {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+.note {
+    font-size: 14px;
+    color: #cc0000;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.notification-wrapper {
+    position: relative;
+}
+
+.notification-icon {
+    position: relative;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.notification-count {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+.notification-item {
+    padding: 8px 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #333;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+    padding-left: 10px;
+}
+
+.notification-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #ccc;
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 999;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.notification-dropdown.hidden {
+    display: none;
+}
+
+.notification-img {
+    height: 22px;
+    width: 22px;
+    vertical-align: middle;
+}

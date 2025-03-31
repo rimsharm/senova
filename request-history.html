@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Request History</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-logo">
+      <a href="dashboard.html">
+        <img src="logo.png" alt="Senova Logo">
+      </a>
+    </div>
+    <ul class="nav-menu">
+      <li><a href="pitch.html">Pitch</a></li>
+      <li><a href="request.html">Request</a></li>
+      <li><a href="matches.html">Matches</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="profile.html" class="profile-link">Profile</a>
+      <button class="logout-button" onclick="window.location.href='signup.html'">Log Out</button>
+    </div>
+  </nav>
+
+  <div class="requests-container">
+    <h1>Your Request History</h1>
+    <div class="history-container" id="historyContainer"></div>
+    <script src="script.js"></script>
+    <!-- <script>
+        const history = JSON.parse(localStorage.getItem("requestHistory")) || [];
+        const container = document.getElementById("historyContainer");
+      
+        function renderHistory() {
+          container.innerHTML = "";
+      
+          if (history.length === 0) {
+            container.innerHTML = "<p>No history available.</p>";
+            return;
+          }
+      
+          history.forEach((entry, index) => {
+            const card = document.createElement("div");
+            card.className = "history-card";
+      
+            card.innerHTML = `
+              <p><strong style="color: #005eff;">${entry.name}</strong> — ${entry.action}</p>
+              ${entry.action === "Passed" ? `<button class="reconsider-btn" onclick="reconsider(${index})">Reconsider</button>` : ''}
+            `;
+      
+            container.appendChild(card);
+          });
+        }
+      
+        // This updates the entry to "Requested"
+        window.reconsider = function(index) {
+          history[index].action = "Requested";
+          localStorage.setItem("requestHistory", JSON.stringify(history));
+          renderHistory(); // Re-render the updated view
+        };
+      
+        renderHistory();
+      </script> -->
+</body>
+</html>

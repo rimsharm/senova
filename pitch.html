@@ -1,0 +1,270 @@
+c<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- <nav class="navbar">
+        <div class="nav-logo">
+            <a href="dashboard.html">
+                <img src="logo.png" alt="Senova Logo">
+            </a>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="pitch.html">Pitch</a></li>
+            <li><a href="request.html">Request</a></li>
+            <li><a href="matches.html">Matches</a></li>
+        </ul>
+        <div class="nav-right">
+            <a href="profile.html" class="profile-link">Profile</a>
+            <button class="logout-button" onclick="window.location.href='signup.html'">Log Out</button>
+        </div>
+    </nav>       -->
+    <div id="menu-container"></div> 
+
+    <div class="pitch-container">
+        <h1>Create a Pitch</h1>
+        <p>Are you pitching yourself or your group?</p>
+
+        <div class="pitch-options">
+            <button id="individualBtn" class="pitch-choice" onclick="showForm('individual')">Myself</button>
+            <button id="groupBtn" class="pitch-choice" onclick="showForm('group')">My Group</button>
+        </div>
+
+        <!-- Individual Form -->
+        <div id="individual-form" class="pitch-form hidden">
+            <h2>Pitch Yourself</h2>
+            <form>
+                <!-- Pitch Title -->
+                <label for="pitch-title">Pitch Title:</label>
+                <input type="text" id="pitch-title" name="pitch-title" placeholder="Enter a title" required>
+                <p id="title-count" class="char-count">0 / 50</p>
+
+                <!-- Description -->
+                <label for="pitch-description">Description:</label>
+                <textarea id="pitch-description" name="pitch-description" rows="4" placeholder="Describe yourself here..." required></textarea>
+                <p id="description-count" class="char-count">0 / 250</p>
+
+                <!-- Semester Selection -->
+                <label for="individual-semester">Semester of Senior I:</label>
+                <select id="individual-semester" name="individual-semester">
+                    <option>Select semester...</option>
+                    <option>Fall 2023</option>
+                    <option>Spring 2024</option>
+                    <option>Summer 2024</option>
+                    <option>Fall 2024</option>
+                    <option>Spring 2025</option>
+                    <option>Summer 2025</option>
+                    <option>Fall 2025</option>
+                </select>
+
+                <!-- Field of Interest Selection -->
+                <label>Field of Interest:</label>
+                <div id="interest-options" class="interest-options">
+                    <button type="button" class="interest-box" data-value="Computer Graphics">Computer Graphics</button>
+                    <button type="button" class="interest-box" data-value="Discrete Mathematics">Discrete Mathematics</button>
+                    <button type="button" class="interest-box" data-value="Artificial Intelligence">Artificial Intelligence</button>
+                    <button type="button" class="interest-box" data-value="Machine Learning">Machine Learning</button>
+                    <button type="button" class="interest-box" data-value="Computer Vision">Computer Vision</button>
+                </div>
+                <div id="selected-fields" class="selected-fields"></div>
+
+                <button type="submit" class="submit-pitch">Submit Pitch</button>
+            </form>
+        </div>
+
+        <!-- Group Form -->
+        <div id="group-form" class="pitch-form hidden">
+            <h2>Pitch Your Group</h2>
+            <p class="note">* Only one person from a group should be pitching.</p>
+            <form>
+                <!-- Pitch Title -->
+                <label for="group-title">Pitch Title:</label>
+                <input type="text" id="group-title" name="group-title" placeholder="Enter group pitch title" required>
+                
+                <!-- How many members -->
+                <label for="group-members">How many members do you have?</label>
+                <input type="number" id="group-members" name="group-members" min="2" max="3" placeholder="Enter number of members" required oninput="updateMemberFields()">
+
+                <div id="member-fields"></div>
+
+                <!-- Description -->
+                <label for="group-description">Group Description:</label>
+                <textarea id="group-description" name="group-description" rows="4" placeholder="Describe your group here..." required></textarea>
+                <p id="group-description-count" class="char-count">0 / 250</p>
+
+                <!-- Semester Selection -->
+                <label for="group-semester">Semester of Senior I:</label>
+                <select id="group-semester" name="group-semester">
+                    <option>Select semester...</option>
+                    <option>Fall 2023</option>
+                    <option>Spring 2024</option>
+                    <option>Summer 2024</option>
+                    <option>Fall 2024</option>
+                    <option>Spring 2025</option>
+                    <option>Summer 2025</option>
+                    <option>Fall 2025</option>
+                </select>
+
+                <!-- Field of Interest Selection -->
+                <label>Field of Interest:</label>
+                <div id="group-interest-options" class="interest-options">
+                    <button type="button" class="interest-box" data-value="Computer Graphics">Computer Graphics</button>
+                    <button type="button" class="interest-box" data-value="Discrete Mathematics">Discrete Mathematics</button>
+                    <button type="button" class="interest-box" data-value="Artificial Intelligence">Artificial Intelligence</button>
+                    <button type="button" class="interest-box" data-value="Machine Learning">Machine Learning</button>
+                    <button type="button" class="interest-box" data-value="Computer Vision">Computer Vision</button>
+                </div>
+                <div id="group-selected-fields" class="selected-fields"></div>
+
+                <button type="submit" class="submit-pitch">Submit Group Pitch</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu-container').innerHTML = data;
+            });
+    </script>
+    <script src="script.js"></script>
+    <!-- <script>
+        let selectedForm = null; // Define this variable to track the selected form type
+
+        function showForm(type) {
+            document.getElementById("individual-form").style.display = "none";
+            document.getElementById("group-form").style.display = "none";
+
+            if (type === "individual") {
+                document.getElementById("individual-form").style.display = "block";
+                selectedForm = "individual";
+            } else {
+                document.getElementById("group-form").style.display = "block";
+                selectedForm = "group";
+            }
+            updateButtonStyles(); // Make sure to call this here
+        }
+
+        function updateButtonStyles() {
+            const individualBtn = document.getElementById('individualBtn');
+            const groupBtn = document.getElementById('groupBtn');
+
+            if (selectedForm === 'individual') {
+                individualBtn.style.backgroundColor = '#005eff';
+                individualBtn.style.color = 'white';
+                groupBtn.style.backgroundColor = 'white';
+                groupBtn.style.color = '#005eff';
+            } else if (selectedForm === 'group') {
+                groupBtn.style.backgroundColor = '#005eff';
+                groupBtn.style.color = 'white';
+                individualBtn.style.backgroundColor = 'white';
+                individualBtn.style.color = '#005eff';
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const groupDescriptionInput = document.getElementById("group-description");
+            const groupDescriptionCount = document.getElementById("group-description-count");
+
+            if (groupDescriptionInput) {
+                groupDescriptionInput.addEventListener("input", function () {
+                    groupDescriptionCount.textContent = `${groupDescriptionInput.value.length} / 250`;
+                });
+            }
+        });
+
+        function updateMemberFields() {
+            const memberCount = document.getElementById("group-members").value;
+            const memberFieldsContainer = document.getElementById("member-fields");
+
+            // Clear existing fields
+            memberFieldsContainer.innerHTML = "";
+
+            // Generate new fields based on the number entered
+            for (let i = 1; i <= memberCount; i++) {
+                const label = document.createElement("label");
+                label.textContent = `Member ${i} Name:`;
+                label.setAttribute("for", `member-${i}`);
+
+                const input = document.createElement("input");
+                input.type = "text";
+                input.id = `member-${i}`;
+                input.name = `member-${i}`;
+                input.placeholder = `Enter name of member ${i}`;
+                input.required = true;
+
+                memberFieldsContainer.appendChild(label);
+                memberFieldsContainer.appendChild(input);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Function to handle interest selection for both individual & group
+            function setupInterestSelection(containerSelector, displaySelector) {
+                const interestBoxes = document.querySelectorAll(containerSelector + " .interest-box");
+                const selectedFieldsContainer = document.querySelector(displaySelector);
+                let selectedInterests = new Set();
+
+                interestBoxes.forEach(box => {
+                    box.addEventListener("click", function () {
+                        const value = this.getAttribute("data-value");
+
+                        if (!selectedInterests.has(value)) {
+                            selectedInterests.add(value);
+                            updateSelectedFields(selectedFieldsContainer, selectedInterests);
+                        }
+                    });
+                });
+
+                function updateSelectedFields(container, selectedSet) {
+                    container.innerHTML = ""; // Clear previous selections
+                    selectedSet.forEach(option => {
+                        const div = document.createElement("div");
+                        div.classList.add("selected-option");
+                        div.textContent = option;
+
+                        // Remove button (❌)
+                        const removeBtn = document.createElement("span");
+                        removeBtn.innerHTML = " ❌";
+                        removeBtn.classList.add("remove-option");
+                        removeBtn.onclick = function () {
+                            selectedSet.delete(option);
+                            updateSelectedFields(container, selectedSet);
+                        };
+
+                        div.appendChild(removeBtn);
+                        container.appendChild(div);
+                    });
+                }
+            }
+
+            // Apply interest selection to both individual and group forms
+            setupInterestSelection("#interest-options", "#selected-fields");  // Individual Form
+            setupInterestSelection("#group-interest-options", "#group-selected-fields");  // Group Form
+        });
+        
+        document.addEventListener("DOMContentLoaded", function () {
+        const titleInput = document.getElementById("pitch-title");
+        const descriptionInput = document.getElementById("pitch-description");
+        const titleCount = document.getElementById("title-count");
+        const descriptionCount = document.getElementById("description-count");
+
+        // Update character count for Title
+        titleInput.addEventListener("input", function () {
+            titleCount.textContent = `${titleInput.value.length} / 50`;
+        });
+
+        // Update character count for Description
+        descriptionInput.addEventListener("input", function () {
+            descriptionCount.textContent = `${descriptionInput.value.length} / 250`;
+        });
+    });
+    </script> -->
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matches</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="menu-container"></div> 
+
+    <!-- Matches Section -->
+    <div class="matches-container">
+        <h1>Your Matches</h1>
+
+        <!-- Tab Options -->
+        <div class="tab-options">
+            <button class="tab-option active" onclick="filterMatches('all')">All Matches</button>
+            <button class="tab-option" onclick="filterMatches('pitches')">Pitched to You</button>
+            <button class="tab-option" onclick="filterMatches('requests')">Your Requests</button>
+        </div>
+
+        <div class="filters-container">
+            <select id="field-filter" class="styled-filter" onchange="filterByField(this.value)">
+                <option value="all">All Fields</option>
+                <option value="Computer Graphics">Computer Graphics</option>
+                <option value="Discrete Mathematics">Discrete Mathematics</option>
+                <option value="Artificial Intelligence">Artificial Intelligence</option>
+                <option value="Machine Learning">Machine Learning</option>
+                <option value="Computer Vision">Computer Vision</option>
+                <option value="Data Science">Data Science</option>
+                <option value="Cybersecurity">Cybersecurity</option>
+                <option value="Software Development">Software Development</option>
+                <option value="Mathematics">Mathematics</option>
+            </select>
+        
+            <select id="type-filter" class="styled-filter" onchange="filterByType(this.value)">
+                <option value="all">All Types</option>
+                <option value="individual">Individuals</option>
+                <option value="group">Groups</option>
+            </select>
+        </div>    
+
+        <div class="matches-list" id="matches-list"></div>
+    </div>
+
+    <!-- JavaScript to Load Matches -->
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu-container').innerHTML = data;
+            });
+    </script>
+    <script src="script.js"></script>
+    <!-- <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const matchesList = document.getElementById("matches-list");
+
+            const matches = [
+                { name: "John Doe", type: "individual", fields: ["Artificial Intelligence", "Machine Learning"], description: "Looking for AI and ML collaboration.", status: "Requested (Pending)", pitchedTo: "user" },
+                { name: ["Jane Smith", "Alex Johnson"], type: "group", fields: ["Computer Graphics"], description: "Team working on rendering projects.", status: "Accept / Reject", pitchedTo: "them" },
+                { name: "Michael Johnson", type: "individual", fields: ["Machine Learning", "Data Science"], description: "Exploring data analysis using deep learning.", status: "Requested (Rejected)", pitchedTo: "user" },
+                { name: ["Alice Brown", "Sam Wilson"], type: "group", fields: ["Computer Vision", "Artificial Intelligence"], description: "Developing a new object detection model.", status: "Accept / Reject", pitchedTo: "them" },
+                { name: "Sara Davis", type: "individual", fields: ["Data Science", "Mathematics"], description: "Looking for partners for mathematical modeling.", status: "Accept / Reject", pitchedTo: "them" },
+                { name: "Chris Lee", type: "individual", fields: ["Cybersecurity"], description: "Building a secure network protocol.", status: "Requested (Finalize)", pitchedTo: "user" }
+            ];
+
+            let currentFilterType = 'all';
+            let currentFieldFilter = 'all';
+            let currentTypeFilter = 'all';
+
+            function filterByType(type) {
+                currentTypeFilter = type;
+                renderMatches();
+            }
+
+            function filterMatches(type) {
+                currentFilterType = type;
+                renderMatches();
+
+                document.querySelectorAll(".tab-option").forEach(btn => btn.classList.remove("active"));
+                document.querySelector(`.tab-option[onclick="filterMatches('${type}')"]`).classList.add("active");
+            }
+
+            function renderMatches() {
+                matchesList.innerHTML = ""; // Clear previous matches
+
+                const filteredMatches = matches.filter(match =>
+                    (currentFilterType === 'all' || 
+                    (currentFilterType === 'pitches' && match.pitchedTo === 'them') || 
+                    (currentFilterType === 'requests' && match.pitchedTo === 'user')) &&
+                    (currentFieldFilter === 'all' || match.fields.includes(currentFieldFilter)) &&
+                    (currentTypeFilter === 'all' || match.type === currentTypeFilter)
+                );
+
+                filteredMatches.forEach(match => {
+                    const matchCard = document.createElement("div");
+                    matchCard.classList.add("match-card");
+
+                    // Display name differently if it's a group
+                    let nameDisplay = Array.isArray(match.name) ? match.name.join(", ") : match.name;
+
+                    // Adding the type label (individual/group)
+                    let typeLabel = `<div class="type-label" style="color: grey;">${match.type.charAt(0).toUpperCase() + match.type.slice(1)}</div>`;
+
+                    matchCard.innerHTML = `
+                        <div class="card-content">
+                            <div class="card-section name" style="color: #005eff;">
+                                ${nameDisplay}
+                                ${typeLabel}
+                            </div>
+                            <div class="card-section description">${match.description}</div>
+                            <div class="card-section fields">${match.fields.join(", ")}</div>
+                            <div class="card-section status">${getStatusButtons(match.status)}</div>
+                        </div>
+                    `;
+
+                    matchesList.appendChild(matchCard);
+                });
+            }
+
+
+            function getStatusButtons(status) {
+                if (status === "Accept / Reject") {
+                    return `<button class="accept-btn">Accept</button> <button class="reject-btn">Reject</button>`;
+                } else if (status === "Requested (Finalize)") {
+                    return `<div>
+                                <span>Requested (Accepted)</span><br>
+                                <button class="finalize-btn" onclick="finalizeRequest(this)">Finalize</button>
+                            </div>`;
+                } else {
+                    return `<span>${status}</span>`;
+                }
+            }
+
+            function finalizeRequest(button) {
+                const cardSection = button.parentElement;
+                cardSection.innerHTML = `<span>Requested (Accepted)</span><br><span>Finalized</span>`;
+            }
+
+            renderMatches();
+
+            window.filterByField = function (field) {
+                currentFieldFilter = field;
+                renderMatches();
+            }
+
+            window.filterByType = filterByType;
+
+            window.filterMatches = filterMatches;
+
+            filterMatches('all'); 
+        });
+    </script> -->
+</body>
+</html>

@@ -1,0 +1,25 @@
+<nav class="navbar">
+    <div class="nav-logo">
+        <img src="logo.png" alt="Senova Logo">
+    </div>
+    <ul class="nav-menu">
+        <li><a href="pitch.html">Pitch</a></li>
+        <li><a href="request.html">Request</a></li>
+        <li><a href="matches.html">Matches</a></li>
+    </ul>
+    <div class="nav-right">
+        <div class="notification-wrapper">
+            <div class="notification-icon" onclick="toggleNotifications()">
+                <img src="notification.png" alt="Notifications" class="notification-img">
+                <span id="notification-count" class="notification-count">0</span>
+            </div>
+            <div id="notification-dropdown" class="notification-dropdown hidden">
+                <p class="notification-title">Notifications</p>
+                <div id="notification-list"></div>
+            </div>
+        </div>            
+        <a href="#" class="profile-link">Profile</a>
+        <button class="logout-button" onclick="window.location.href='login.html'">Log Out</button>
+    </div>
+</nav>  
+<script src="script.js"></script>
