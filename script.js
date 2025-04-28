@@ -451,7 +451,30 @@ function renderHistoryPage() {
 
 document.addEventListener("DOMContentLoaded", renderHistoryPage);
 
+// Profile picture preview
+function previewProfilePic() {
+  const input = document.getElementById('profile-pic-input');
+  const img = document.getElementById('profile-pic-preview');
+  const file = input.files[0];
 
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      img.src = e.target.result;
+      img.style.display = 'block';
+      document.querySelector('.add-icon').style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+// Automatically bind the input when DOM loads
+document.addEventListener("DOMContentLoaded", function () {
+  const picInput = document.getElementById('profile-pic-input');
+  if (picInput) {
+    picInput.addEventListener('change', previewProfilePic);
+  }
+});
 
 
 
