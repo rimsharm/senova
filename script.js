@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 matchCard.innerHTML = `
                     <div class="card-content">
-                        <div class="card-section name" style="color: #005eff;">
+                        <div class="card-section name" style="color: #154063;">
                             ${nameDisplay}
                             ${typeLabel}
                         </div>
@@ -220,15 +220,15 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!individualBtn || !groupBtn) return;
 
         if (selectedForm === 'individual') {
-            individualBtn.style.backgroundColor = '#005eff';
+            individualBtn.style.backgroundColor = '#154063';
             individualBtn.style.color = 'white';
             groupBtn.style.backgroundColor = 'white';
-            groupBtn.style.color = '#005eff';
+            groupBtn.style.color = '#154063';
         } else {
-            groupBtn.style.backgroundColor = '#005eff';
+            groupBtn.style.backgroundColor = '#154063';
             groupBtn.style.color = 'white';
             individualBtn.style.backgroundColor = 'white';
-            individualBtn.style.color = '#005eff';
+            individualBtn.style.color = '#154063';
         }
     }
 
@@ -239,19 +239,39 @@ document.addEventListener("DOMContentLoaded", function () {
     const descriptionCount = document.getElementById("description-count");
 
     if (titleInput && titleCount) {
+        const titleMax = 50;
         titleInput.addEventListener("input", () => {
-            titleCount.textContent = `${titleInput.value.length} / 50`;
+            if (titleInput.value.length > titleMax) {
+                titleInput.value = titleInput.value.slice(0, titleMax);
+            }
+            titleCount.textContent = `${titleInput.value.length} / ${titleMax}`;
         });
     }
 
     if (descriptionInput && descriptionCount) {
+        const descMax = 250;
         descriptionInput.addEventListener("input", () => {
-            descriptionCount.textContent = `${descriptionInput.value.length} / 250`;
+            if (descriptionInput.value.length > descMax) {
+                descriptionInput.value = descriptionInput.value.slice(0, descMax);
+            }
+            descriptionCount.textContent = `${descriptionInput.value.length} / ${descMax}`;
         });
     }
 
+    const groupTitleInput = document.getElementById("group-title");
+    const groupTitleCount = document.getElementById("group-title-count");
     const groupDescriptionInput = document.getElementById("group-description");
     const groupDescriptionCount = document.getElementById("group-description-count");
+
+    if (groupTitleInput && groupTitleCount) {
+        const maxGroupTitle = 50;
+        groupTitleInput.addEventListener("input", () => {
+            if (groupTitleInput.value.length > maxGroupTitle) {
+                groupTitleInput.value = groupTitleInput.value.slice(0, maxGroupTitle);
+            }
+            groupTitleCount.textContent = `${groupTitleInput.value.length} / ${maxGroupTitle}`;
+        });
+    }
 
     if (groupDescriptionInput && groupDescriptionCount) {
         groupDescriptionInput.addEventListener("input", function () {
@@ -324,92 +344,133 @@ document.addEventListener("DOMContentLoaded", function () {
 
     setupInterestSelection("#interest-options", "#selected-fields");
     setupInterestSelection("#group-interest-options", "#group-selected-fields");
+
+    const pitchForms = document.querySelectorAll(".pitch-form form");
+    pitchForms.forEach(form => {
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            // TODO: Add backend request here if needed
+            window.location.href = "pitch-success.html";
+        });
+    });
+
+    // ✅ Combine year + semester selections into one string
+    document.querySelector('#individual-form form')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const year = document.getElementById('individual-year')?.value;
+        const semester = document.getElementById('individual-semester')?.value;
+        const fullSemester = `${semester} ${year}`;
+
+        console.log('Individual Pitch Semester:', fullSemester);
+        // You can now include `fullSemester` in your form data handling
+    });
+
+    document.querySelector('#group-form form')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const year = document.getElementById('group-year')?.value;
+        const semester = document.getElementById('group-semester')?.value;
+        const fullSemester = `${semester} ${year}`;
+
+        console.log('Group Pitch Semester:', fullSemester);
+        // You can now include `fullSemester` in your form data handling
+    });
 });
 
 // =================== REQUESTS PAGE LOGIC ===================
-let currentRequestIndex = 0;
-let currentList = [];
-let selectedType = null;
-
 const members = [
-    { name: "John Doe", description: "Looking for AI and ML collaboration." },
-    { name: "Michael Johnson", description: "Exploring data analysis using deep learning." },
-    { name: "Sara Davis", description: "Looking for partners for mathematical modeling." }
+    { name: "John Doe", type: "individual", fields: ["Artificial Intelligence", "Machine Learning"], description: "Looking for AI and ML collaboration." },
+    { name: "Michael Johnson", type: "individual", fields: ["Data Science"], description: "Exploring data analysis using deep learning." },
+    { name: "Emily Zhang", type: "individual", fields: ["Cybersecurity"], description: "Building secure authentication systems." },
+    { name: "Ayaan Patel", type: "individual", fields: ["Cloud Computing"], description: "Interested in cloud infrastructure and scalability." },
+    { name: "Fatima Khan", type: "individual", fields: ["Internet of Things"], description: "Working on IoT-based home automation." },
+    { name: "Lucas Ferreira", type: "individual", fields: ["Web Development"], description: "Frontend-focused developer working on React apps." },
+    { name: "Nora Ibrahim", type: "individual", fields: ["Machine Learning"], description: "Developing ML models for predictive analytics." },
+    { name: "Leo Tran", type: "individual", fields: ["Mobile App Development"], description: "Building cross-platform mobile apps." },
+    { name: "Sophia Chen", type: "individual", fields: ["Game Development"], description: "Game designer focused on Unity and Unreal Engine." },
+    { name: "Omar Al-Sayed", type: "individual", fields: ["Blockchain"], description: "Exploring smart contracts and DeFi applications." },
+    { name: "Zara Malik", type: "individual", fields: ["AR/VR"], description: "Developing immersive VR learning environments." },
+    { name: "Ravi Sharma", type: "individual", fields: ["Embedded Systems"], description: "Working on microcontroller-based projects." },
+    { name: "Lina Park", type: "individual", fields: ["Software Engineering"], description: "Focused on large-scale system design." }
 ];
 
 const groups = [
-    { name: "Rendering Team", description: "Working on rendering projects." },
-    { name: "Object Detection Group", description: "Developing a new object detection model." }
+    { name: ["Jane Smith", "Alex Johnson"], type: "group", fields: ["Cloud Computing", "Web Development"], description: "Developing a scalable SaaS platform." },
+    { name: ["Alice Brown", "Sam Wilson"], type: "group", fields: ["Artificial Intelligence", "Computer Vision"], description: "Building an object detection model for smart surveillance." },
+    { name: ["Rayan Ahmed", "Mina Saeed"], type: "group", fields: ["Blockchain", "Cybersecurity"], description: "Creating a secure blockchain voting system." },
+    { name: ["Huda Khan", "James Park", "Liam Chen"], type: "group", fields: ["Internet of Things", "Embedded Systems"], description: "Smart home automation project using IoT sensors." },
+    { name: ["Meera Iqbal", "Yusuf Salem"], type: "group", fields: ["Machine Learning", "Data Science"], description: "Working on ML models to detect academic plagiarism." },
+    { name: ["Tara Brooks", "Noah Lee"], type: "group", fields: ["Game Development", "AR/VR"], description: "Designing a multiplayer AR game for education." }
 ];
 
+let currentFieldFilter = 'all';
+let selectedType = null;
+
+function filterRequestByField(field) {
+    currentFieldFilter = field;
+    chooseType(selectedType);
+}
+
 function chooseType(type) {
-    currentRequestIndex = 0;
     selectedType = type;
-    currentList = type === 'members' ? members : groups;
 
-    const requestContainer = document.getElementById('requestContainer');
-    if (requestContainer) {
-        requestContainer.style.display = 'block';
-        displayRequest();
-        updateButtonStyles();
-    }
-}
+    document.getElementById('membersBtn')?.classList.remove('active');
+    document.getElementById('groupsBtn')?.classList.remove('active');
 
-function displayRequest() {
-    if (!currentList || currentRequestIndex >= currentList.length) {
-        const container = document.getElementById('requestContainer');
-        if (container) container.innerHTML = "<h2>No More Requests</h2>";
-        return;
-    }
-
-    const request = currentList[currentRequestIndex];
-    document.getElementById('requestName').innerText = request.name;
-    document.getElementById('requestDescription').innerText = request.description;
-}
-
-function swipe(action) {
-    const requestContainer = document.getElementById('requestContainer');
-
-    if (currentRequestIndex < currentList.length) {
-        const request = currentList[currentRequestIndex];
-        const historyEntry = {
-            name: request.name,
-            action: action === 'accept' ? 'Requested' : 'Passed'
-        };
-
-        const storedHistory = JSON.parse(localStorage.getItem("requestHistory")) || [];
-        storedHistory.push(historyEntry);
-        localStorage.setItem("requestHistory", JSON.stringify(storedHistory));
-    }
-
-    if (action === 'reject') {
-        requestContainer.style.animation = "swipeLeft 0.5s forwards";
-    } else if (action === 'accept') {
-        requestContainer.style.animation = "swipeRight 0.5s forwards";
-    }
-
-    setTimeout(() => {
-        currentRequestIndex++;
-        requestContainer.style.animation = "";
-        displayRequest();
-    }, 500);
-}
-
-function updateButtonStyles() {
-    const membersBtn = document.getElementById('membersBtn');
-    const groupsBtn = document.getElementById('groupsBtn');
-
-    if (selectedType === 'members') {
-        membersBtn.style.backgroundColor = '#005eff';
-        membersBtn.style.color = 'white';
-        groupsBtn.style.backgroundColor = 'white';
-        groupsBtn.style.color = '#005eff';
+    if (type === 'members') {
+        document.getElementById('membersBtn')?.classList.add('active');
     } else {
-        groupsBtn.style.backgroundColor = '#005eff';
-        groupsBtn.style.color = 'white';
-        membersBtn.style.backgroundColor = 'white';
-        membersBtn.style.color = '#005eff';
+        document.getElementById('groupsBtn')?.classList.add('active');
     }
+
+    document.querySelector('.filters-container').style.display = 'flex';
+
+    const requestContainer = document.getElementById("requestContainer");
+    requestContainer.innerHTML = "";
+    const list = type === 'members' ? members : groups;
+
+    const filteredList = list.filter(match =>
+        currentFieldFilter === 'all' || match.fields.includes(currentFieldFilter)
+    );
+
+    filteredList.forEach(match => {
+        const matchCard = document.createElement("div");
+        matchCard.classList.add("match-card");
+
+        const nameDisplay = Array.isArray(match.name) ? match.name.join(", ") : match.name;
+        const typeLabel = `<div class="type-label" style="color: grey;">${match.type.charAt(0).toUpperCase() + match.type.slice(1)}</div>`;
+
+        matchCard.innerHTML = `
+            <div class="card-content">
+                <div class="card-section name" style="color: #154063;">
+                    ${nameDisplay}
+                    ${typeLabel}
+                </div>
+                <div class="card-section description">${match.description}</div>
+                <div class="card-section fields">${match.fields.join(", ")}</div>
+                <div class="card-section status">
+                    <button class="request-btn" onclick="handleRequest('${nameDisplay}', 'Requested')">Request</button>
+                </div>
+            </div>
+        `;
+
+        requestContainer.appendChild(matchCard);
+    });
+}
+
+function handleRequest(name, action) {
+    const storedHistory = JSON.parse(localStorage.getItem("requestHistory")) || [];
+    storedHistory.push({ name, action });
+    localStorage.setItem("requestHistory", JSON.stringify(storedHistory));
+
+    const buttons = document.querySelectorAll('.request-btn');
+    buttons.forEach(btn => {
+        if (btn.textContent === "Request" && btn.closest('.card-content').textContent.includes(name)) {
+            const parent = btn.parentElement;
+            parent.innerHTML = `<span style="color: #154063; font-weight: 500;">Requested</span>`;
+        }
+    });
 }
 
 // ================= Request History Page Logic =================
@@ -432,7 +493,7 @@ function renderHistoryPage() {
             card.className = "history-card";
 
             card.innerHTML = `
-                <p><strong style="color: #005eff;">${entry.name}</strong> — ${entry.action}</p>
+                <p><strong style="color: #154063;">${entry.name}</strong> — ${entry.action}</p>
                 ${entry.action === "Passed" ? `<button class="reconsider-btn" onclick="reconsider(${index})">Reconsider</button>` : ''}
             `;
 

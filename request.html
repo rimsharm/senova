@@ -8,134 +8,48 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="nav-logo">
-            <a href="dashboard.html">
-                <img src="logo.png" alt="Senova Logo">
-            </a>
-        </div>
-        <ul class="nav-menu">
-            <li><a href="pitch.html">Pitch</a></li>
-            <li><a href="request.html">Request</a></li>
-            <li><a href="matches.html">Matches</a></li>
-        </ul>
-        <div class="nav-right">
-            <a href="profile.html" class="profile-link">Profile</a>
-            <button class="logout-button" onclick="window.location.href='signup.html'">Log Out</button>
-        </div>
-    </nav>
-
+    <div id="menu-container"></div>
+    
     <div class="requests-container">
         <div class="request-header">
-            <h1>Requests</h1>
-            <a href="request-history.html" title="View Request History" class="history-icon">
-                <img src="history.png" alt="History" style="height: 24px; vertical-align: middle;">
-              </a>              
+            <h1>Requests</h1>         
         </div>
           
         <div class="request-options">
-            <button id="membersBtn" class="request-choice" onclick="chooseType('members')">Request for Members</button>
-            <button id="groupsBtn" class="request-choice" onclick="chooseType('groups')">Request for Groups</button>
+            <button id="membersBtn" class="request-choice" onclick="chooseType('members')">Request a Member</button>
+            <button id="groupsBtn" class="request-choice" onclick="chooseType('groups')">Request a Group</button>
         </div>
 
-        <div id="requestContainer" class="request-card" style="display: none;">
-            <h2 id="requestName"></h2>
-            <p id="requestDescription"></p>
-            <div class="swipe-buttons">
-                <button class="pass-btn" onclick="swipe('reject')">← Pass</button>
-                <button class="request-btn" onclick="swipe('accept')">Request →</button>
-            </div>
-        </div>        
+        <div class="filters-container">
+            <select id="request-field-filter" class="styled-filter" onchange="filterRequestByField(this.value)">
+                <option value="all">All Fields</option>
+                <option value="Artificial Intelligence">Artificial Intelligence</option>
+                <option value="Machine Learning">Machine Learning</option>
+                <option value="Computer Vision">Computer Vision</option>
+                <option value="Data Science">Data Science</option>
+                <option value="Cybersecurity">Cybersecurity</option>
+                <option value="Software Engineering">Software Engineering</option>
+                <option value="Internet of Things">Internet of Things</option>
+                <option value="Cloud Computing">Cloud Computing</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Mobile App Development">Mobile App Development</option>
+                <option value="Game Development">Game Development</option>
+                <option value="Blockchain">Blockchain</option>
+                <option value="AR/VR">AR/VR</option>
+                <option value="Embedded Systems">Embedded Systems</option>
+            </select>
+          </div>          
+
+        <div id="requestContainer" class="matches-list"></div>      
     </div>
+
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu-container').innerHTML = data;
+            });
+    </script>
     <script src="script.js"></script>
-    <!-- <script>
-        let currentRequestIndex = 0;
-        let currentList = [];
-        let selectedType = null;
-
-        const members = [
-            { name: "John Doe", description: "Looking for AI and ML collaboration." },
-            { name: "Michael Johnson", description: "Exploring data analysis using deep learning." },
-            { name: "Sara Davis", description: "Looking for partners for mathematical modeling." }
-        ];
-
-        const groups = [
-            { name: "Rendering Team", description: "Working on rendering projects." },
-            { name: "Object Detection Group", description: "Developing a new object detection model." }
-        ];
-
-        function chooseType(type) {
-            currentRequestIndex = 0;
-            selectedType = type;
-            currentList = type === 'members' ? members : groups;
-
-            document.getElementById('requestContainer').style.display = 'block';
-            displayRequest();
-            updateButtonStyles();
-        }
-
-        function displayRequest() {
-            if (currentRequestIndex < currentList.length) {
-                const request = currentList[currentRequestIndex];
-                document.getElementById('requestName').innerText = request.name;
-                document.getElementById('requestDescription').innerText = request.description;
-            } else {
-                document.getElementById('requestContainer').innerHTML = "<h2>No More Requests</h2>";
-            }
-        }
-
-        function swipe(action) {
-            currentRequestIndex++;
-            displayRequest();
-        }
-
-        function updateButtonStyles() {
-            const membersBtn = document.getElementById('membersBtn');
-            const groupsBtn = document.getElementById('groupsBtn');
-
-            if (selectedType === 'members') {
-                membersBtn.style.backgroundColor = '#005eff';
-                membersBtn.style.color = 'white';
-
-                groupsBtn.style.backgroundColor = 'white';
-                groupsBtn.style.color = '#005eff';
-            } else if (selectedType === 'groups') {
-                groupsBtn.style.backgroundColor = '#005eff';
-                groupsBtn.style.color = 'white';
-
-                membersBtn.style.backgroundColor = 'white';
-                membersBtn.style.color = '#005eff';
-            }
-        }
-
-        function swipe(action) {
-            const requestContainer = document.getElementById('requestContainer');
-
-            if (currentRequestIndex < currentList.length) {
-                const request = currentList[currentRequestIndex];
-                const historyEntry = {
-                    name: request.name,
-                    action: action === 'accept' ? 'Requested' : 'Passed'
-                };
-
-                const storedHistory = JSON.parse(localStorage.getItem("requestHistory")) || [];
-                storedHistory.push(historyEntry);
-                localStorage.setItem("requestHistory", JSON.stringify(storedHistory));
-            }
-
-            if (action === 'reject') {
-                requestContainer.style.animation = "swipeLeft 0.5s forwards";
-            } else if (action === 'accept') {
-                requestContainer.style.animation = "swipeRight 0.5s forwards";
-            }
-
-            setTimeout(() => {
-                currentRequestIndex++;
-                requestContainer.style.animation = "";
-                displayRequest();
-            }, 500);
-        }
-    </script> -->
 </body>
 </html>

@@ -41,35 +41,47 @@ c<!DOCTYPE html>
             <form>
                 <!-- Pitch Title -->
                 <label for="pitch-title">Pitch Title:</label>
-                <input type="text" id="pitch-title" name="pitch-title" placeholder="Enter a title" required>
+                <input type="text" id="pitch-title" name="pitch-title" placeholder="Enter a title" require="50">
                 <p id="title-count" class="char-count">0 / 50</p>
 
                 <!-- Description -->
                 <label for="pitch-description">Description:</label>
-                <textarea id="pitch-description" name="pitch-description" rows="4" placeholder="Describe yourself here..." required></textarea>
+                <textarea id="pitch-description" name="pitch-description" rows="4" placeholder="Describe yourself here..." required maxlength="250"></textarea>
                 <p id="description-count" class="char-count">0 / 250</p>
 
                 <!-- Semester Selection -->
-                <label for="individual-semester">Semester of Senior I:</label>
-                <select id="individual-semester" name="individual-semester">
-                    <option>Select semester...</option>
-                    <option>Fall 2023</option>
-                    <option>Spring 2024</option>
-                    <option>Summer 2024</option>
-                    <option>Fall 2024</option>
-                    <option>Spring 2025</option>
-                    <option>Summer 2025</option>
-                    <option>Fall 2025</option>
+                <label>Academic Year of Senior Design 1:</label>
+                <select id="individual-year" name="individual-year" required>
+                    <option value="">Select year...</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                    <option value="2027">2027</option>
+                </select>
+
+                <label>Semester:</label>
+                <select id="individual-semester" name="individual-semester" required>
+                    <option value="">Select semester...</option>
+                    <option value="Fall">Fall</option>
+                    <option value="Spring">Spring</option>
                 </select>
 
                 <!-- Field of Interest Selection -->
                 <label>Field of Interest:</label>
                 <div id="interest-options" class="interest-options">
-                    <button type="button" class="interest-box" data-value="Computer Graphics">Computer Graphics</button>
-                    <button type="button" class="interest-box" data-value="Discrete Mathematics">Discrete Mathematics</button>
                     <button type="button" class="interest-box" data-value="Artificial Intelligence">Artificial Intelligence</button>
                     <button type="button" class="interest-box" data-value="Machine Learning">Machine Learning</button>
                     <button type="button" class="interest-box" data-value="Computer Vision">Computer Vision</button>
+                    <button type="button" class="interest-box" data-value="Data Science">Data Science</button>
+                    <button type="button" class="interest-box" data-value="Cybersecurity">Cybersecurity</button>
+                    <button type="button" class="interest-box" data-value="Software Engineering">Software Engineering</button>
+                    <button type="button" class="interest-box" data-value="Internet of Things">Internet of Things</button>
+                    <button type="button" class="interest-box" data-value="Cloud Computing">Cloud Computing</button>
+                    <button type="button" class="interest-box" data-value="Web Development">Web Development</button>
+                    <button type="button" class="interest-box" data-value="Mobile App Development">Mobile App Development</button>
+                    <button type="button" class="interest-box" data-value="Game Development">Game Development</button>
+                    <button type="button" class="interest-box" data-value="Blockchain">Blockchain</button>
+                    <button type="button" class="interest-box" data-value="AR/VR">AR/VR</button>
+                    <button type="button" class="interest-box" data-value="Embedded Systems">Embedded Systems</button>
                 </div>
                 <div id="selected-fields" class="selected-fields"></div>
 
@@ -84,7 +96,8 @@ c<!DOCTYPE html>
             <form>
                 <!-- Pitch Title -->
                 <label for="group-title">Pitch Title:</label>
-                <input type="text" id="group-title" name="group-title" placeholder="Enter group pitch title" required>
+                <input type="text" id="group-title" name="group-title" placeholder="Enter group pitch title" required maxlength="50">
+                <p id="group-title-count" class="char-count">0 / 50</p>
                 
                 <!-- How many members -->
                 <label for="group-members">How many members do you have?</label>
@@ -94,30 +107,42 @@ c<!DOCTYPE html>
 
                 <!-- Description -->
                 <label for="group-description">Group Description:</label>
-                <textarea id="group-description" name="group-description" rows="4" placeholder="Describe your group here..." required></textarea>
+                <textarea id="group-description" name="group-description" rows="4" placeholder="Describe your group here..." required maxlength="250"></textarea>
                 <p id="group-description-count" class="char-count">0 / 250</p>
 
-                <!-- Semester Selection -->
-                <label for="group-semester">Semester of Senior I:</label>
-                <select id="group-semester" name="group-semester">
-                    <option>Select semester...</option>
-                    <option>Fall 2023</option>
-                    <option>Spring 2024</option>
-                    <option>Summer 2024</option>
-                    <option>Fall 2024</option>
-                    <option>Spring 2025</option>
-                    <option>Summer 2025</option>
-                    <option>Fall 2025</option>
+                <!-- Academic Year and Semester -->
+                <label>Academic Year of Senior Design 1:</label>
+                <select id="group-year" name="group-year" required>
+                    <option value="">Select year...</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                    <option value="2027">2027</option>
+                </select>
+
+                <label>Semester:</label>
+                <select id="group-semester" name="group-semester" required>
+                    <option value="">Select semester...</option>
+                    <option value="Fall">Fall</option>
+                    <option value="Spring">Spring</option>
                 </select>
 
                 <!-- Field of Interest Selection -->
                 <label>Field of Interest:</label>
                 <div id="group-interest-options" class="interest-options">
-                    <button type="button" class="interest-box" data-value="Computer Graphics">Computer Graphics</button>
-                    <button type="button" class="interest-box" data-value="Discrete Mathematics">Discrete Mathematics</button>
                     <button type="button" class="interest-box" data-value="Artificial Intelligence">Artificial Intelligence</button>
                     <button type="button" class="interest-box" data-value="Machine Learning">Machine Learning</button>
                     <button type="button" class="interest-box" data-value="Computer Vision">Computer Vision</button>
+                    <button type="button" class="interest-box" data-value="Data Science">Data Science</button>
+                    <button type="button" class="interest-box" data-value="Cybersecurity">Cybersecurity</button>
+                    <button type="button" class="interest-box" data-value="Software Engineering">Software Engineering</button>
+                    <button type="button" class="interest-box" data-value="Internet of Things">IoT</button>
+                    <button type="button" class="interest-box" data-value="Cloud Computing">Cloud Computing</button>
+                    <button type="button" class="interest-box" data-value="Web Development">Web Development</button>
+                    <button type="button" class="interest-box" data-value="Mobile App Development">Mobile App Development</button>
+                    <button type="button" class="interest-box" data-value="Game Development">Game Development</button>
+                    <button type="button" class="interest-box" data-value="Blockchain">Blockchain</button>
+                    <button type="button" class="interest-box" data-value="AR/VR">AR/VR</button>
+                    <button type="button" class="interest-box" data-value="Embedded Systems">Embedded Systems</button>                    
                 </div>
                 <div id="group-selected-fields" class="selected-fields"></div>
 

@@ -39,7 +39,7 @@ button {
     margin-bottom: 30px;
 }
 .signup-container a {
-    color: #005eff;
+    color: #154063;
     text-decoration: none;
 }
 .content {
@@ -82,19 +82,19 @@ button {
 .form-group input:not(:placeholder-shown) + label {
     top: 5px;
     font-size: 12px;
-    color: #005eff;
+    color: #154063;
 }
 .form-group input:focus,
 .form-group input:not(:placeholder-shown) {
-    border-bottom: 1px solid #005eff;
+    border-bottom: 1px solid #154063;
 }
 .signup-button {
     margin-top: 30px;
     padding: 12px 20px;
     font-size: 16px;
-    color: #005eff;
+    color: #154063;
     background-color: white;
-    border: 1px solid #005eff;
+    border: 1px solid #154063;
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -102,7 +102,7 @@ button {
     align-self: flex-start;
 }
 .signup-button:hover {
-    background-color: #005eff;
+    background-color: #154063;
     color: white;
 }
 .vertical-divider {
@@ -182,7 +182,7 @@ button {
 }
 
 .nav-menu a:hover {
-    color: #005eff;
+    color: #154063;
 }
 
 /* Profile Button - Same Style as Menu Items */
@@ -196,14 +196,14 @@ button {
 }
 
 .profile-link:hover {
-    color: #005eff;
+    color: #154063;
 }
 
 /* Logout Button */
 .logout-button {
-    background-color: #005eff;
+    background-color: #154063;
     color: white;
-    border: 1px solid #005eff;
+    border: 1px solid #154063;
     font-size: 16px;
     padding: 8px 16px;
     border-radius: 20px;
@@ -215,8 +215,8 @@ button {
 .logout-button:hover {
     /* background-color: #003fb3; */
     background-color: white;
-    color: #005eff;
-    border: 1px solid #005eff;
+    color: #154063;
+    border: 1px solid #154063;
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -260,16 +260,16 @@ button {
 .pitch-choice {
     padding: 12px 24px;
     font-size: 18px;
-    border: 2px solid #005eff;
+    border: 2px solid #154063;
     background-color: white;
-    color: #005eff;
+    color: #154063;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .pitch-choice:hover {
-    background-color: #005eff;
+    background-color: #154063;
     color: white;
 }
 
@@ -322,7 +322,7 @@ button {
     margin-top: 20px;
     padding: 12px;
     width: 100%;
-    background-color: #005eff;
+    background-color: #154063;
     color: white;
     border: none;
     border-radius: 5px;
@@ -332,7 +332,7 @@ button {
 }
 
 .submit-pitch:hover {
-    background-color: #003fb3;
+    background-color: #0F2D45;
 }
 
 .pitch-form input,
@@ -353,8 +353,8 @@ button {
 
 .interest-box {
     background-color: white;
-    border: 2px solid #005eff;
-    color: #005eff;
+    border: 2px solid #154063;
+    color: #154063;
     padding: 10px 16px;
     border-radius: 20px;
     font-size: 16px;
@@ -364,7 +364,7 @@ button {
 
 .interest-box:hover,
 .interest-box.selected {
-    background-color: #005eff;
+    background-color: #154063;
     color: white;
 }
 
@@ -378,7 +378,7 @@ button {
 
 /* Each Selected Option */
 .selected-option {
-    background-color: #005eff;
+    background-color: #154063;
     color: white;
     padding: 8px 12px;
     border-radius: 20px;
@@ -423,17 +423,17 @@ button {
 
 .tab-option {
     padding: 10px 20px;
-    border: 1px solid #005eff;
+    border: 1px solid #154063;
     border-radius: 20px;
     background-color: white;
-    color: #005eff;
+    color: #154063;
     cursor: pointer;
     transition: all 0.3s;
 }
 
 .tab-option.active,
 .tab-option:hover {
-    background-color: #005eff;
+    background-color: #154063;
     color: white;
 }
 
@@ -450,10 +450,10 @@ button {
 
 .interest-filter select {
     padding: 8px 12px;
-    border: 1px solid #005eff;
+    border: 1px solid #154063;
     border-radius: 5px;
     background-color: white;
-    color: #005eff;
+    color: #154063;
     cursor: pointer;
 }
 
@@ -526,13 +526,13 @@ button {
 
 /* Finalize Button Styling */
 .finalize-btn {
-    background-color: #005eff;
+    background-color: #154063;
     color: white;
     margin-top: 5px;
 }
 
 .finalize-btn:hover {
-    background-color: #003fb3;
+    background-color: #0F2D45;
 }
 
 /* Type Filter Styling */
@@ -543,10 +543,10 @@ button {
 
 .type-filter select {
     padding: 8px 12px;
-    border: 1px solid #005eff;
+    border: 1px solid #154063;
     border-radius: 5px;
     background-color: white;
-    color: #005eff;
+    color: #154063;
     cursor: pointer;
     margin-top: 10px;
 }
@@ -562,10 +562,10 @@ button {
 /* Styled Filter Dropdowns */
 .styled-filter {
     padding: 8px 12px;
-    border: 1px solid #005eff;
+    border: 1px solid #154063;
     border-radius: 5px;
     background-color: white;
-    color: #005eff;
+    color: #154063;
     cursor: pointer;
     transition: all 0.3s;
     font-family: 'Montserrat', sans-serif;
@@ -574,7 +574,7 @@ button {
 /* Hover Effect */
 .styled-filter:hover,
 .styled-filter:focus {
-    background-color: #005eff;
+    background-color: #154063;
     color: white;
 }
 
@@ -587,7 +587,7 @@ button {
 
 /* Name Styling */
 .card-section.name {
-    color: #005eff;
+    color: #154063;
     font-size: 16px;
 }
 
@@ -603,22 +603,29 @@ button {
     justify-content: center;
     gap: 20px;
     margin-top: 20px;
+    margin-bottom: 40px; /* ✅ Add this line */
 }
 
 .request-choice {
     padding: 12px 24px;
     font-size: 18px;
-    border: 2px solid #005eff;
+    border: 2px solid #154063;
     background-color: white;
-    color: #005eff;
+    color: #154063;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .request-choice:hover {
-    background-color: #005eff;
+    background-color: #154063;
     color: white;
+}
+
+.request-choice.active {
+    background-color: #154063;
+    color: white;
+    border-color: #154063;
 }
 
 .request-card {
@@ -633,7 +640,7 @@ button {
 }
 
 .request-card h2 {
-    color: #005eff;
+    color: #154063;
 }
 
 .swipe-buttons {
@@ -701,9 +708,9 @@ button {
 /* Accept Button Style */
 .request-btn {
     padding: 10px 25px;
-    background: linear-gradient(45deg, #005eff, #007bff);
+    background: #154063;
     color: white;
-    border: 2px solid #005eff;
+    border: 2px solid #154063;
     border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
@@ -716,8 +723,8 @@ button {
 
 .request-btn:hover {
     background: white;
-    color: #005eff;
-    border-color: #005eff;
+    color: #154063;
+    border-color: #154063;
     box-shadow: 0 0 12px rgba(0, 94, 255, 0.3);
 }
 
@@ -725,7 +732,7 @@ button {
 .pass-btn {
     padding: 10px 25px;
     background: linear-gradient(45deg, #d3d3d3, #b0b0b0);
-    color: #005eff;
+    color: #154063;
     border: 2px solid #b0b0b0;
     border-radius: 8px;
     cursor: pointer;
@@ -763,16 +770,16 @@ button {
 
 .history-icon {
     font-size: 24px;
-    color: #005eff;
+    color: #154063;
     text-decoration: none;
     padding: 8px 12px;
-    border: 1px solid #005eff;
+    border: 1px solid #154063;
     border-radius: 50px;
     transition: all 0.3s ease;
 }
 
 .history-icon:hover {
-    background-color: #005eff;
+    background-color: #154063;
     color: white;
 }
 
@@ -805,7 +812,7 @@ button {
 .reconsider-btn {
     margin-top: 12px;
     padding: 8px 16px;
-    background-color: #005eff;
+    background-color: #154063;
     color: white;
     border: none;
     border-radius: 6px;
@@ -815,7 +822,7 @@ button {
   }
 
 .reconsider-btn:hover {
-    background-color: #003fcf;
+    background-color: #154063;
   }
 
 h1 {
@@ -913,7 +920,7 @@ h1 {
     }
 
     .profile-pic-label:hover {
-    border-color: #005eff;
+    border-color: #154063;
     }
 
     .profile-pic {
@@ -931,17 +938,25 @@ h1 {
     }
 
     .profile-pic-label:hover .add-icon {
-    color: #005eff;
+    color: #154063;
     }
 
     .edit-overlay {
       position: absolute;
       bottom: 0;
       right: 0;
-      background-color: #005eff;
+      background-color: #154063;
       color: white;
       border-radius: 50%;
       padding: 4px 6px;
       font-size: 12px;
       cursor: pointer;
     }
+
+    .filters-container {
+        display: none; /* hides it initially */
+        justify-content: center;
+        gap: 20px;
+        margin: 20px 0;
+    }
+
